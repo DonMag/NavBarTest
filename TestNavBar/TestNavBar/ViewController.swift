@@ -10,16 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+	@IBAction func codePushTapped(_ sender: Any) {
+		
+		if let vc = storyboard?.instantiateViewController(withIdentifier: "NextVC") as? NextViewController {
+			navigationController?.pushViewController(vc, animated: true)
+		}
+		
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
 
 }
 

@@ -8,16 +8,24 @@
 
 import UIKit
 
+class CustomTitleView: UIView {
+	
+	override var intrinsicContentSize: CGSize {
+		return UILayoutFittingExpandedSize
+	}
+
+}
+
 class NextViewController: UIViewController {
 	
-	let btnA = UIBarButtonItem.init(
+	lazy var btnA = UIBarButtonItem(
 		title: "<",
-		style: UIBarButtonItemStyle.plain,
+		style: .plain,
 		target: nil,
 		action: nil
 	)
 	
-	let btnR = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.bookmarks,
+	lazy var btnR = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.bookmarks,
 	                                target: nil,
 	                                action: nil
 	)
@@ -27,7 +35,7 @@ class NextViewController: UIViewController {
 		
 		// Do any additional setup after loading the view.
 		
-		let v  = UIView()
+		let v  = CustomTitleView()
 		v.backgroundColor = UIColor.green
 		
 		// add your views and set up all the constraints
@@ -58,9 +66,16 @@ class NextViewController: UIViewController {
 		// frame width will auto-adjust
 		v.frame = CGRect(x: 0, y: 0, width: 1024, height: 30)
 		
+		btnA.target = self
+		btnA.action = #selector(myBackTapped)
+		
 		navigationItem.leftBarButtonItem = btnA
 		navigationItem.rightBarButtonItem = btnR
 		
+	}
+	
+	@objc func myBackTapped() {
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 }
